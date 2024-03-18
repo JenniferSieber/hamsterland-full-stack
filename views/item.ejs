@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>🐹 HamsterLand | Items</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <%- include('./partials/navbar') %>
+    <div class="title">
+      <h1> Welcome to HamsterLand </h1>
+      <p class="sub-header"> 🐹 Your Hamster Shopping List ! 🐹</p>
+    </div>
+  </header>
+  <main class="items-container">
+    <section class="get-involved">
+      <div class="get-involved-info">
+        <h2>Get Involved!</h2>
+      <div class="signup-btn">
+        <h3> <a href="/signup" target="_blank"> 🐹  Hamsterland Pass 🐹 </a></h3>
+      </div>
+      <p>  <span>Sign up for Free! </span>
+        Join our community of hamster lovers! Follow us on social media, subscribe to our newsletter, or contribute to our blog. We'd love to have you as part of the HamsterLand family!</p>
+      </div>
+    </section>
+    <section class="forms-container">
+      <h2>Create Your Hamster Wish List</h2>
+      <!-- Create -->
+     <form class="create-form" id="createForm" action="/item" method="POST">
+      <input type="text" name="name" placeholder="Item name" required>
+      <input type="text" name="description" placeholder="Item description" required>
+      <button type="submit">Create Item</button>
+    </form>
+  
+    <!-- Update -->
+    <form class="update-form" id="updateForm" action="/item/update/" method="POST">
+      <input type="hidden" name="_id" id="updateId"> <!--Bundle ID with the form data-->
+      <input type="text" name="name" id="updateName" placeholder="New item name" required>
+      <input type="text" name="description" id="updateDescription" placeholder="New item description" required>
+      <button type="submit">Update Item</button>
+    </form>
+    </section>
+
+  <!-- Display items -->
+  <section class="list-container">
+    <ul id="itemList" class="item-list">
+      <% items.forEach((item) => { %>
+        <li>
+         <div class="name-desc"><span><%= item.name %>:</span> <p><%= item.description %></p></div> 
+          <div class="list-item-btn">
+            <button onclick="editItem('<%= item._id %>', '<%= item.name %>', '<%= item.description %>')">Edit</button>
+            <button onclick="deleteItem('<%= item._id %>')">Delete</button>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+  </section>
+  <div class="hero-container">
+    <div id="picCarousel" class="pic-carousel">
+      <img class="pic" src="/images/Adobe-FireflyAI-7.jpg" alt="hamster ai illustration" class="active" class="active"> 
+      <img src="/images/Adobe-FireflyAI-2.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-3.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-5.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-6.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-10.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-4.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-8.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-1.jpg" alt="hamster ai illustration" >
+      <img src="/images/Adobe-FireflyAI-9.jpg" alt="hamster ai illustration" >
+    </div>
+    <div class="credits">
+      <span>All images provided on this created using: <a href="https://www.adobe.com/home" target="_blank">Adobe Firefly AI </a> </span>
+    </div>
+  </div>
+  </main>
+   
+  <footer>
+    <%- include('./partials/footer') %>
+  </footer>
+   <script src="/js/script.js"></script>
+</body>
+</html>
