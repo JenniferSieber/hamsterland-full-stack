@@ -17,6 +17,7 @@ mongoose.connect(`${process.env.DB_URI}`)
   app.use(express.json())
   app.set('view engine', 'ejs')
 
+// routes
   app.get('/', (req, res) => {
     res.render('index')
   })
